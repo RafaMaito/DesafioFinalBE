@@ -1,0 +1,45 @@
+Controle de venda e devoluções
+
+
+Produto - id,nome, categora, nº de devoluções
+
+Venda - id_venda, id_produto
+
+
+Produto 1:1 Venda
+Venda 1:N Produtos
+Estoque 1:N Produtos /* bora gurizada "le
+*/
+
+
+
+Estoque tem Produtos 
+
+Produto tem categotia
+
+Categoria tem Produtos
+
+
+Venda tem produtos e tem estoques
+
+
+cliente 
+
+preciso acontrolar as vendas e minha devoluções
+
+
+problema:
+saber quais que são os prudtos que eu tenho que tem 
+mais devoluçoes
+ou produto ou Categoria e motivo
+
+preciso controlar as vendas e saber quais os produtos devolvidos
+vendas lançadas partindo de um estoque  e um estoque 
+estoque 1 pode ou não pegar coisas do estoque 2 ou 3
+
+"eu que lanço a venda"
+"eu controlo se o estoque pode ou não pegar de outro"
+
+cuidar estoque quando for lançar a venda
+verificar se estoque pode ou não pegar de outro estoque
+e saber quais os produtos são mais devolvidos
