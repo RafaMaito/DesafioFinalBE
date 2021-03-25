@@ -5,7 +5,7 @@ const routes = new Router();
 routes.get('/product', ProductControllers.index);
 routes.get('/product/:id', ProductControllers.show);
 routes.post('/product', ProductControllers.store);
-routes.get('/product/:id', ProductControllers.update);
-routes.get('/product/:id', ProductControllers.delete);
+routes.put('/product/:id', ProductControllers.update);
+// routes.delete('/product/:id', ProductControllers.delete);
 
 export default routes;

@@ -1,9 +1,43 @@
+/* eslint-disable radix */
 import Product from '../models/Product';
 
 class ProductController {
   async index(req, res) {
-    const product = await Product.findAll();
-    return res.json(product);
+    const { page, limit, name, description, categoryId } = req.query;
+
+    const pageNum = Number.parseInt(page);
+    const limitNum = Number.parseInt(limit);
+
+    if (!page || !limit) {
+      return res.status(400).json({ message: 'Invalid params' });
+    }
+
+    const where = {};
+
+    if (name) {
+      where.name = name;
+    }
+
+    if (description) {
+      where.description = description;
+    }
+
+    if (categoryId) {
+      where.category_id = categoryId;
+    }
+
+    // validação de uid
+    if (Number.isNaN(pageNum && limitNum)) {
+      return res.status(400).json({ message: 'Invalid data' });
+    }
+
+    return res.json(
+      await Product.findAndCountAll({
+        where,
+        limit,
+        offset: limit * (page - 1),
+      })
+    );
   }
 
   async show(req, res) {
@@ -24,18 +58,25 @@ class ProductController {
   }
 
   async update(req, res) {
-    // const { name, description } = req.body;
-    // const { id } = req.params;
-    // const parse = parseInt(id);
-    // if (Number.isNaN(parse)) {
-    //   return res.status(400).json({
-    //     massage: 'Invalid ID',
-    //   });
-    // }
-    // const product = await Product;
+    const { id } = req.params;
+
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Invalid data' });
+    }
+
+    const { name, description, categoryId } = req.body;
+
+    product.name = name;
+    product.description = description;
+    product.category_id = categoryId;
+    product.save();
+
+    return res.json(product);
   }
 
-  async delete(req, res) {}
+  delete(req, res) {}
 }
 
 export default new ProductController();
