@@ -42,7 +42,7 @@ class SaleController {
 
   async store(req, res) {
     try {
-      const { id } = req.params;
+      // const { id } = req.params;
       const { dateSale, amount, productId, regionId } = req.body;
 
       const sale = await Sale.create({
@@ -52,7 +52,7 @@ class SaleController {
         region_id: regionId,
       });
 
-      return res.json(sale, id);
+      return res.json(sale);
     } catch (error) {
       return res.status(error.status || 400).json(error.message);
     }

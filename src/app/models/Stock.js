@@ -20,13 +20,13 @@ class Stock extends Model {
             model: 'product',
             key: 'id',
           },
-          region_id: {
-            type: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'region',
-              key: 'id',
-            },
+        },
+        region_id: {
+          type: Sequelize.DataTypes.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'region',
+            key: 'id',
           },
         },
       },
@@ -40,17 +40,14 @@ class Stock extends Model {
   }
 
   static associate(models) {
-    this.hasOne(
-      models.Product,
-      {
-        as: 'product',
-        foreignKey: 'product_id',
-      },
-      this.belongsTo(models.Region, {
-        as: 'region',
-        foreignKey: 'region_id',
-      })
-    );
+    // this.hasOne(models.Product, {
+    //   as: 'product',
+    //   foreignKey: 'product_id',
+    // });
+    this.belongsTo(models.Region, {
+      as: 'region',
+      foreignKey: 'region_id',
+    });
   }
 }
 

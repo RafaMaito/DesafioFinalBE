@@ -48,6 +48,12 @@ class ProductController {
 
   async store(req, res) {
     const { name, description, categoryId } = req.body;
+
+    // await Category.create({
+    //   id: categoryId,
+    //   name: 'test',
+    // });
+
     const product = await Product.create({
       name,
       description,
@@ -76,7 +82,7 @@ class ProductController {
     return res.json(product);
   }
 
-  delete(req, res) {}
+  // delete(req, res) {}
 }
 
 export default new ProductController();
